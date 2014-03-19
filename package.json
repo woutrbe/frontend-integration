@@ -1,0 +1,10 @@
+{
+  "name": "frontend-integration-testing",
+  "version": "0.0.1",
+  "description": "Front-end integration testing",
+  "devDependencies": {
+    "grunt": "~0.4.2",
+    "grunt-contrib-jasmine": "~0.6.1",
+    "grunt-selenium": "0.5.10"
+  }
+}
