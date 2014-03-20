@@ -14,7 +14,7 @@ module.exports = function(grunt) {
 		selenium: {
 			options: {
 				startURL: 'http://www.lifehack.org',
-				browsers: ['chrome', 'firefox'],
+				browsers: ['chrome'],
 				log: 'test/test.log'
 			},
 			suite: {
@@ -25,7 +25,7 @@ module.exports = function(grunt) {
 		},
 
 		nodeunit: {
-			
+
 		}
 
 		// http://localhost:4444/selenium-server/driver/?cmd=shutDownSeleniumServer
