@@ -9,27 +9,28 @@ module.exports = function(grunt) {
 					browserName: 'chrome'
 				}
 			},
+			ads: {
+				tests: 'test/ads.js',
+				options: {
+                    desiredCapabilities: {
+                        browserName: 'firefox'
+                    }
+                }
+			},
 			sharing: {
 				tests: 'test/sharing.js',
                 options: {
                     desiredCapabilities: {
-                        browserName: 'chrome'
-                    }
-                }
-			},
-			ads: {
-				test: 'test/ads.js',
-				options: {
-                    desiredCapabilities: {
-                        browserName: 'chrome'
+                        browserName: 'firefox'
                     }
                 }
 			}
-		},
+		}
 	});
 
 	grunt.loadNpmTasks('grunt-webdriver');
 
 	grunt.registerTask('default', []);
-	grunt.registerTask('test', ['']);
+	grunt.registerTask('sharing', ['webdriver:sharing']);
+	grunt.registerTask('ads', ['webdriver:ads']);
 }
