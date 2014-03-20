@@ -1,31 +1,17 @@
-var assert = require('assert'),
-	async = require('async');
+'use strict';
 
-
-describe('Array', function() {
-	describe('#indexOf()', function() {
-		it('should return -1 when the value is not present', function() {
-			assert.equal(-1, [1,2,3].indexOf(5));
-     		assert.equal(-1, [1,2,3].indexOf(0));
-		})
-	})
-})
+var assert = require('assert');
 
 describe('Ads', function() {
-	describe('Google Ads', function() {
-		// Allow some time to load
-		this.timeout(15000);
+	this.timeout(60000);
 
-		it('should display ads after page load', function(done) {
-			var browser = this.browser;
-
-			browser.get('http://www.lifehack.org/', function() {
-				console.log('test');
-
-				browser.title(function(err, title) {
-					title.should.include('lifehack');
-				})
-			});
-		})
-	})
-})
+	it('display ads after page load', function(done) {
+		// .adslot .adslot_feed
+		browser
+            .url('http://www.lifehack.org/articles/communication/truly-believe-arent-like-others-heres-next.html')
+            .title(function(err, res) {
+                console.log('Title was: ' + res.value);
+            })
+            .call(done);
+	});
+});

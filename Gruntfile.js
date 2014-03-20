@@ -16,6 +16,14 @@ module.exports = function(grunt) {
                         browserName: 'chrome'
                     }
                 }
+			},
+			ads: {
+				test: 'test/ads.js',
+				options: {
+                    desiredCapabilities: {
+                        browserName: 'chrome'
+                    }
+                }
 			}
 		},
 	});

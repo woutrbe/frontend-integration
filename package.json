@@ -2,8 +2,7 @@
   "name": "frontend-integration-testing",
   "version": "0.0.1",
   "description": "Front-end integration testing",
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "grunt": "~0.4.2",
     "grunt-webdriver": "~0.3.1"
