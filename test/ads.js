@@ -11,7 +11,7 @@ describe('Google ads', function () {
             .title(function(err, res) {
                 console.log('Title was: ' + res.value);
             })
-            .elements('.adslot, .adslot_feed', function(err, results) {
+            .elements('.adslots, .adslot_feeds', function(err, results) {
                 console.log(results);
                 for(var i = 0; i < results.value.length; i++) {
                     var element = results.value[i].ELEMENT;
@@ -30,6 +30,8 @@ describe('Google ads', function () {
                 		})
                 	})
                 }
-            }).end();
+            }).call(end, function(err) {
+                console.log(err);
+            }).call(done);
     });
 });
