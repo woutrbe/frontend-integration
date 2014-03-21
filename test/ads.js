@@ -14,13 +14,22 @@ describe('Google ads', function () {
             .elements('.adslot, .adslot_feed', function(err, results) {
                 console.log(results);
                 for(var i = 0; i < results.value.length; i++) {
+                    var element = results.value[i].ELEMENT;
+                    console.log(element);
+
+                    console.log('---------------');
+
                 	browser.pause(5000, function() {
-                		browser.elementIdAttribute(results.value[i].ELEMENT, 'data-dfp', function(err, result) {
+                        console.log(element);
+
+                        console.log('---------------');
+
+                		browser.elementIdAttribute(element, 'data-dfp', function(err, result) {
                 			console.log(err);
                 			console.log(result.value);
                 		})
                 	})
                 }
-            }).call(done);
+            }).end();
     });
 });
