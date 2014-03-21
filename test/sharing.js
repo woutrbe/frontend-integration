@@ -33,6 +33,8 @@ describe('Facebook sharing', function () {
                         }
                     });
                 }
-            }).call(done);
+            }).call(function() {                
+                throw 'No .facebook elements were found or all elements are hidden.';
+            });
     });
 });

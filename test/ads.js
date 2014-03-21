@@ -2,36 +2,43 @@
 
 var assert = require('assert');
 
-describe('Google ads', function () {
+describe('Ads', function () {
     this.timeout(60000);
 
-    it('show ads after load', function(done) {
+    it('shows google ads after page load', function(done) {
+        var ads_failed = [];
+
         browser
             .url('http://www.lifehack.org')
             .title(function(err, res) {
                 console.log('Title was: ' + res.value);
             })
-            .elements('.adslots, .adslot_feeds', function(err, results) {
-                console.log(results);
+            // Select all ad elements
+            .elements('.adslot, .adslot_feed', function(err, results) {
+                // If no results, throw an error
+                if(results.value.length == 0) throw 'There are no ads on this page.';
+
+                // Loop over all elements
                 for(var i = 0; i < results.value.length; i++) {
                     var element = results.value[i].ELEMENT;
-                    console.log(element);
 
-                    console.log('---------------');
-
-                	browser.pause(5000, function() {
-                        console.log(element);
-
-                        console.log('---------------');
-
-                		browser.elementIdAttribute(element, 'data-dfp', function(err, result) {
-                			console.log(err);
-                			console.log(result.value);
-                		})
-                	})
+                    // Give it 5 sec to load
+                    browser.implicitWait(5000, function() {
+                        // Check if the element contains a data atribute called data-dfp
+                        browser.elementIdAttribute(element, 'data-dfp', function(err, result) {
+                            if(result.value === null) ads_failed.push(true);
+                        })
+                    })
                 }
-            }).call(end, function(err) {
-                console.log(err);
-            }).call(done);
+            })
+            .call(function() {
+                browser.pause(5500, function() {
+                    if(ads_failed.length > 0) {
+                        throw 'Ads failed to load.';
+                    } else {
+                        done();
+                    }
+                })
+            });
     });
 });
